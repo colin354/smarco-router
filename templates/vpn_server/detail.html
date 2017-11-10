@@ -1,0 +1,48 @@
+{% extends 'dev_base.html' %}
+{% block main %}
+        <article class="deviceinfo device_info-{{ device_info.pk }}">
+            <header class="entry-header">
+                    <h1 class="entry-title">Manage Route</h1>
+            </header>
+        </article>
+        <section class="device-area" id="device-area">
+        <hr>
+        <div class="device-info-{{ device_info.pk }}">
+                <span class="dev-route_status">Route Status:   Work</span></br>
+                <span class="dev-route_serial">Route Serial:   {{ device_info.route_serial }}</span></br>
+                <span class="dev-vpn_status">Vpn Status:   {{ device_info.vpn_status }}</span></br>
+                <span class="dev-route_ip">Route IP:   {{ device_info.route_ip }}</span></br>
+        </div>
+        <hr>
+                <form action="{% url 'vpn_server:route_status_ctl' device_info.pk %}" method="post" class="comment-form">
+            {% csrf_token %}
+            <div class="row">
+                    <div class="col-md-4">
+                        <label for="{{ form.vpn_status.id_for_label }}">Vpn on/off control</label>
+                        <button type="submit" class="device-btn">on/off</button>
+                    </div>
+            </div>
+        </form>
+       
+        </section>
+{% endblock main %}
+{% block toc %}
+        <div class="widget widget-content">
+            <h3 class="widget-title">控制选项</h3>
+            <ul>
+                <li>
+                    <a href="#">VPN开关控制</a>
+                </li>
+                <li>
+                    <a href="#">设备远程更新</a>
+                </li>
+                <li>
+                    <a href="#">数据信息采集</a>
+                </li>
+                <li>
+                    <a href="#">获取帮助</a>
+                </li>
+            </ul>
+        </div>
+{% endblock toc %}
+

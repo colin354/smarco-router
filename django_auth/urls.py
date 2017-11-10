@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
+from blog.feeds import AllPostsRssFeed
 
 from users import views
 urlpatterns = [
@@ -22,7 +23,10 @@ urlpatterns = [
     url(r'^users/',include('users.urls')),
     url(r'^users/',include('django.contrib.auth.urls')),
     url(r'^$',views.index,name='index'),
+    url(r'^search/',include('haystack.urls')),
+    url(r'^all/rss/$',AllPostsRssFeed(),name='rss'),
     url(r'blog/',include('blog.urls')),
     url(r'blog/',include('comments.urls')),
+    url(r'vpn_server/',include('vpn_server.urls')),
 
 ]

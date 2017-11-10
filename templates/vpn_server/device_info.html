@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block main %}
+        <article class="deviceinfo device_info-{{ device_info.pk }}">
+            <header class="entry-header">
+                    <h1 class="entry-title">Manage Route</h1>
+            </header>
+        </article>
+        <section class="device-area" id="device-area">
+        <hr>
+        <div class="device-info-{{ device_info.pk }}">
+                <span class="dev-route_serial">Route Serial:   {{ device_info_json.route_serial }}</span></br>
+                <span class="dev-vpn_status">Vpn Status:   {{ device_info_json.vpn_status }}</span></br>
+                <span class="dev-route_ip">Route IP:   {{ device_info_json.route_ip }}</span></br>
+                <span class="dev-route_status">Route Status:   Work</span></br>
+        
+        </div>
+        <form action="{% url 'vpn_server:device_info' device_info_json.route_serial %}" method="post" class="comment-form">
+            {% csrf_token %}
+            <div class="row">
+                    <div class="col-md-4">
+                        <label for="{{ form.vpn_status.id_for_label }}">vpn control</label>
+                        {{ form.vpn_status }}
+                        {{ form.vpn_status.errors }}
+                        <button type="submit" class="device-btn">on/off</button>
+                    </div>
+            </div>
+        </form>
+       
+        </section>
+{% endblock main %}
+{% block toc %}
+        <div class="widget widget-content">
+            <h3 class="widget-title">文章目录</h3>
+            <ul>
+                <li>
+                    <a href="#">教程特点</a>
+                </li>
+                <li>
+                    <a href="#">谁适合这个教程</a>
+                </li>
+                <li>
+                    <a href="#">在线预览</a>
+                </li>
+                <li>
+                    <a href="#">资源列表</a>
+                </li>
+                <li>
+                    <a href="#">获取帮助</a>
+                </li>
+            </ul>
+        </div>
+{% endblock toc %}

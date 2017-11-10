@@ -248,6 +248,37 @@ img {
     color: #000;
 }
 
+.device-table {
+    height:300px;
+    width:750px;
+    border:2px solid #000;
+    text-align:center;
+    table-layout: fixed
+}
+
+.dev-route_serial {
+    font-weight: 400;
+    font-size: 20px;
+    color: black
+}
+
+.dev-vpn_status {
+    font-weight: 400;
+    font-size: 20px;
+    color: black
+}
+
+.dev-route_ip {
+    font-weight: 400;
+    font-size: 20px;
+    color: black
+}
+
+.dev-route_status {
+    font-weight: 400;
+    font-size: 20px;
+    color: black
+}
 /**
  * 4.1 - Read More Button CSS 3 style
  */

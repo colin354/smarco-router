@@ -1,0 +1,49 @@
+{%extends 'dev_base.html' %}
+{% block main %}
+        <header class="entry-header">
+            <h1 class="entry-title">
+                <a href="#">Device List Info</a>
+            </h1>
+        </header>
+        <table cellspacing="0" cellpadding="1" align="center" class="device-table">
+            <tr>
+                <td><span class="device-route_serial"> Route Serial </span></td>
+                <td><span class="device-vpn_status"> Vpn Status </span></td>
+                <td><span class="device-software"> Software ID </span></td>
+                <td><span class="device-hardware"> Hardware ID </span><//td>
+                <td><span class="device-route_ip"> Route IP </span></td>
+                <td><span class="device-option"> Option </span></td>
+            </tr>
+        {% for device in device_list %}
+            <tr>
+                <td><span class="device-route_serial">{{ device.route_serial }}</span></td>
+                <td><span class="device-vpn_status"><a href="{% url 'vpn_server:vpn_status_ctl' device.pk%}">{{ device.vpn_status }}</a></span></td>
+                <td><span class="device-software">{{ device.software }}</span></td>
+                <td><span class="device-hardware">{{ device.hardware }}</span></td>
+                <td><span class="device-route_ip">{{ device.route_ip }}</span></td>
+                <td><a href="{{ device.get_absolute_url }}"> Management </button></td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td>No route regist!</td>
+            </tr>
+        {% endfor %}
+        </table>
+{% endblock main %}
+{% block toc %}
+        <div class="widget widget-content">
+            <h3 class="widget-title">控制选项</h3>
+            <ul>
+                <li>
+                    <a href="#">在线设备状态</a>
+                </li>
+                <li>
+                    <a href="#">离线设备管理</a>
+                <li>
+                    <a href="#">获取帮助</a>
+                </li>
+            </ul>
+        </div>
+{% endblock toc %}
+
+

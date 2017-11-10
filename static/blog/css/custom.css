@@ -248,6 +248,11 @@ img {
     color: #000;
 }
 
+.device-table{
+        height:300px;
+        width:300px
+}
+
 /**
  * 4.1 - Read More Button CSS 3 style
  */

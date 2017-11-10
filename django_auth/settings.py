@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '%4wthq^y!5nwy^2&frln-0=9gv1gvy&_2%4se3yi0nzmatv9od'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*','.smarco.link']
 
@@ -37,16 +37,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_tables2',
+    'haystack',
     'users',
     'blog',
     'comments',
+    'vpn_server',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -134,3 +137,12 @@ AUTHENTICATION_BACKENDS= (
         'django.contrib.auth.backends.ModelBackend',
         'users.backends.EmailBackend',
         )
+
+HAYSTACK_CONNECTIONS = {
+        'default':{
+                'ENGINE':'blog.whoosh_cn_backend.WhooshEngine',
+                'PATH':os.path.join(BASE_DIR,'whoosh_index'),
+            },
+        }
+HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
